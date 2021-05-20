@@ -187,6 +187,22 @@ Kilépési feltétel lehet adott iterációszám, vagy adott idejű stagnálás,
 Nem rendelkezik genetikus operátorral! Csak a legjobb egyed szolgál információt a többi egyednek!
 
 
+# NEURÁLIS HÁLÓZATOK I
+> Mesterséges neurális hálózatok, biológiai háttér, logikai műveletek megvalósítása.
+
+**átviteli függvények:**
+- hard limit: 0/1
+- lineáris: egyenes mentén +00
+- log-szigmoidális: -1-+1 között vagy 0-+1 között
+
+**felügyelt tanítás:**
+- mindig azokat a súlyokat csökkentjük amikre a bemenet 1 így  mindig a nagyobb érték lesz csökkentve! Növelésnél is ez igaz.
+
+**felügyelet nélküli tanítás - kohonen hálózat:**(self organizing map)
+- feltételezzük, hogy van egy kétbementetes három neuronos hálózat
+- az adott bemeneten a három  értékből az egyik nagyobb, ekkor az egyik neuron győz, ezek után csak azt a neuront használjuk.
+- `súly_értéke_betanítás_után = súly_eredeti_érétke + betnítási_együttható * (input - súly_eredeti_érétke)`
+
 
 
 
