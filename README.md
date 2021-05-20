@@ -153,12 +153,38 @@ Identifikációs probléma, mikor a változókhoz érétket rendelünk, a megold
 
 Pl minden sornak vagy oszlopnak adunk egy értéket. Használhatunk kényszereket, amik adott változókat érintenek.
 
-## KÉNYSZERKIELÉGÍTÉSI PROBLÉMÁK II
+- Backtrack algoritmusoknál visszalépünk ha hibás megállapításhoz jutottunk. 
+- Forward checking mindent hozzárendel mindnehez.
+
+## KÉNYSZERKIELÉGÍTÉSI PROBLÉMÁK II (arc consistency)
 > Hatékony ág-konzisztencia algoritmus, példák kidolgozása ezzel a módszerrel.
 
-Egy ág akkor konzisztenst akkor konzisztens ha mindne értékre a kezdőponttól létezik érték a csúcsban, ami szerint konzisztenst, és nem törétnik kényszermegszegés.
+Egy ág akkor konzisztenst akkor konzisztens ha mindne értékre a kezdőponttól létezik érték a csúcsban, és nem törétnik kényszermegszegés.
 
+Gyorsabb megoldást ad mint a forward check, kevesebbet kell backtrackelni, mert előre vizsgál.
 
+## GENETIKUS ALGORITMUSOK I
+> Ismerkedés a genetikai algoritmus alapfogalmaival. Fitnesz függvény, rulettkerék szelekció.
+
+A gyange egyedek kihalnak, a legjobbaknak van esélye a túlélésre. Az adatokat a kromószókáon tároljuk amik génekből állnak. 
+
+Egypontos keresztezésnél kttévágjuk a kormoszómát a bal oldalt hagyjuk a jobb oldalt cseréljük.
+
+## GENETIKUS ALGORITMUSOK II
+> Genetikus műveletek: rekombináció, mutáció, elitizmus. Szemléltető példák kidolgozása.
+
+Nincs garancia arra, hogy valaha is megtalálja az optimális megoldást a genetikus algoritmusunk!
+ 
+### Részecske raj optimalizáció (PSO)
+Egyszerű éllőnyek de rajban kollektív tudattal rendelkeznek. 
+
+Lépések: 
+1. minden részecske fittnesz meghatározása
+2. egyéni és globális fitenssz frissítése
+3. sebesség és helyzet frissítése
+
+Kilépési feltétel lehet adott iterációszám, vagy adott idejű stagnálás, stb.
+Nem rendelkezik genetikus operátorral! Csak a legjobb egyed szolgál információt a többi egyednek!
 
 
 
