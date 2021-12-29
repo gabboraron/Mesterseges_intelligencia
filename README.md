@@ -52,18 +52,56 @@ https://www.kmooc.uni-obuda.hu/course/68
 - célteszt, hogy állapot célállapot-e
 - útköltség
 
-A megoldás a kiindulóállapot-célállapot út, amit az útköltség mér.
+A megoldás a kiindulóállapot-célállapot közti út, amit az útköltség mér. A legkisebb költségű út a legoptimálisabb.
 
 - teljesség: biztosan találunk megoldást, ha létezik
 - optimalitás: az optimális utat találja meg ha van megoldás
 - időigény: szükséges idő mértéke
 - tárigény: szükséges memória mértéke
 
-- szélességi keresés akkor optimális, ha a lépésköltség állandó, mert az algoritmus mindig a legsekélyebben fekvő pontot fejti ki.
-- mélységi keresés: az adott ágon megyünk amíg nem érjük a végét és mindet kifejtjük, exponenciális időigényű.
-- mélységkorlátozott keresés: egy korlátot szabunk a mélység vizsgálásában, és mélységi keresést használunk, de gyakorlatilag, ha ezen a mélységen túl van megoldás akkor nem sikeres...
-- iteratív mélységi keresés: kezdjük egy mélységgel a mélységi keresést, majd növeljük addig amíg találunk valamit vagy amíg tudjuk...
-- kétirányú keresés: meghatározza az előd lépéseket is
+**Perem(hullámfront)**: a legenerált, de még nem mkifejtett csomópontok halmaza.
+
+- **szélességi keresés**:
+    - a legsekélyebben fekvő(legkevesebb lépéssel elérhető) csomópontot fejti ki.
+    - a perem egy First In First Out - FIFO jellegű sor.
+    - ez a stratégia minden adott mélységű csomópontot hamarabb fejt ki, mint bármelyik mélyebb szinten lévő csomópontot. 
+    - akkor optimális, ha a lépésköltség állandó, mert az algoritmus mindig a legsekélyebben fekvő pontot fejti ki.
+    - Tulajdonságok:
+      - Teljesség: Mindig megtalálja a megoldást ha **b** véges 
+      - Optimalitás: Optimális, ha a mélyebben fekvő megoldások kevésbé optimálisak, tehát ha minden lépés költsége 1.
+      - Időigény: O(b^(d+1)), ahol d a elágazási tényező
+      - Tárigény: O(b^(d+1)), mert minden csomópontot a futás végéig meg kell jegyezni.
+- **egyenletes költségű keresés**:
+    - Ez a módszer mindig a legkisebb útköltségű csomópontot fejti ki.
+    - Végtelen ciklusba kerül, ha egy csomópont útköltsége 0, ezt helyettesítő 0 értékkel küszöbölhetjük ki.
+- **mélységi keresés**:
+    - a legmélyebben fekvő még nem kifejtett csomópontot fejtjűk ki.
+    - a perem egy Last In First Out - LIFO sor, ahol a kifejtett csomópont utódai mindig a sor elejére kerülnek.
+    - Tulajdonságok:
+      - Teljesség: Nem teljes, mert végtelen mélység esetén elakadhat.
+      - Optimalitás: Nem optimális, mert nem optimális célt hamarabb megtalálhat az optimálisnál.
+      - Időigény: O(b^m), ahol m maximális mélység
+      - Tárigény: O(bm) - kis tárigény, ahol csak az aktuális útvonalat és az eddig még nem kifejtett csomópontokat kell tárolni
+- **mélységkorlátozott keresés**:
+    - egy L korlátot szabunk a mélység vizsgálásában, és mélységi keresést használunk.
+    - Tulajdonságok:
+      - Teljesség: Ha d > L, akkor a megoldást nem találjuk meg
+      - Optimalitás: Nem optimális, mert nem optimális célt hamarabb megtalálhat az optimálisnál.
+      - Időigény: O(b^L)
+      - Tárigény: O(bm)
+- **iteratív mélységi keresés**:
+    - kezdjük egy mélységgel a mélységi keresést, majd növeljük addig amíg találunk valamit vagy amíg tudjuk...
+    - Tulajdonságok:
+      - Teljesség: Teljes
+      - Optimalitás: Optimális, ha a lépésköltség 1 vagy a mélység növekvő függvénye.
+      - Időigény: exponenciális
+      - Tárigény: lineáris
+- **kétirányú keresés**:
+    - két keresést indítunk: egyiket a kezdő, másikat a célcsomópontból
+    - Nehéz lehet meghatározni a célállapot elődeit
+    - Több megoldás esetén sem biztos mit kell lépni
+    - Időigény: O(b ^(d/2))
+    - Tárigény: O(b ^(d/2))
 
 ## Informálatlan keresés II
 > Ebben az előadásban bemutatjuk hogyan lehet különböző példákat keresési algoritmusokkal megoldani. Levezetjük a "kancsó" feladatot, felvázoljuk a folyóátkelő játékokat és a "békás" logikai játékot, és meglátjuk hogyan lehet elvégezni a keresést listák segítségével.
